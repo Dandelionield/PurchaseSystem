@@ -12,19 +12,52 @@ INSERT INTO super.user(
 	'Dante',
 	'dante.alighieri@unicolombo.edu.co'
 
+),(
+
+	'2222222222',
+	'Maomao',
+	'maomao@unicolombo.edu.co'
+
+),(
+
+	'3333333333',
+	'Alex',
+	'alex@unicolombo.edu.co'
+
+),(
+
+	'4444444444',
+	'Danielle',
+	'danielle@unicolombo'
+
+),(
+
+	'5555555555',
+	'Doe',
+	'doe@unicolombo.edu.co'
+
 );
 
 INSERT INTO super.employee(
 
 	employee_code,
 	user_dni,
-	password
+	password,
+	admin
 
 ) VALUES (
 
 	'1110010001',
 	'1111111111',
-	'lambda73'
+	'lambda73',
+	true
+
+),(
+
+	'2220020002',
+	'2222222222',
+	'maomao123',
+	false
 
 );
 

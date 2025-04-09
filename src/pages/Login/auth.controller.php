@@ -16,19 +16,19 @@ class AuthController{
 
 			if (count($POST)!=2){
 
-				throw new Exception('Cantidad de campos incompatibles.');
+				throw new Exception('Number of fields are incongruent.');
 
 			}
 
 			if (!array_key_exists('employee_code', $POST)){
 
-				throw new Exception('Campo Código faltante.');
+				throw new Exception('Code field missing.');
 
 			}
 
 			if (!array_key_exists('password', $POST)){
 
-				throw new Exception('Campo Contraseña faltante.');
+				throw new Exception('Password field missing.');
 
 			}
 
@@ -37,17 +37,17 @@ class AuthController{
 
 			if (empty($employee_code)){
 
-				throw new Exception('El código no puede ser vacio.');
+				throw new Exception('Code field cannot be empty.');
 
 			}
 
 			if (empty($password)){
 
-				throw new Exception('La contraseña no puede ser vacia.');
+				throw new Exception('Password field cannot be empty.');
 
 			}
 
-			$this->employee = Employee::find([$employee_code], [
+			$this->employee = Employee::find_by_code($employee_code, [
 
 				'conditions' => ['state = ?', true]
 
@@ -100,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 		if (!$auth->verify()){
 
-			throw new Exception('Credenciales incorrectars.');
+			throw new Exception('Wrong credentials.');
 
 		}else{
 
@@ -108,12 +108,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 			header('Content-Type: application/json');
 
-				echo json_encode([
+			echo json_encode([
 
-				'type' => 'update',
 				'status' => 'success',
 				'message' => 'Welcome '. $auth->getEmployeeName(),
-				'url' => ''//'https://localhost/PurchaseSystem/src/pages/Home/home.page.php';
+				'url' => 'http://localhost/PurchaseSystem/src/pages/Home/home.page.php'
 
 			]);
 

@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS super.employee(
 	employee_code VARCHAR(10),
 	user_dni VARCHAR(20) NOT NULL UNIQUE,
 	password VARCHAR(30) NOT NULL,
+	admin BOOLEAN NOT NULL DEFAULT false,
 	state BOOLEAN NOT NULL DEFAULT true,
 	PRIMARY KEY (employee_code),
 	FOREIGN KEY (user_dni) REFERENCES super.user(user_dni) ON DELETE CASCADE ON UPDATE CASCADE

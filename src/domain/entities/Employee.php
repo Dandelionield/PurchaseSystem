@@ -11,7 +11,9 @@ class Employee extends ActiveRecord\Model{
 	public static $alias_attribute = array(
 
 		'code' => 'employee_code',
-		'dni' => 'user_dni'
+		'dni' => 'user_dni',
+		'admin' => 'admin',  // Mapeo explícito
+		'state' => 'state'
 
     );
 
@@ -21,7 +23,8 @@ class Employee extends ActiveRecord\Model{
 	public static $validates_presence_of = array(
 
 		array('employee_code', 'message' => 'La cedula es obligatoria.'),
-		array('password', 'message' => 'Contraseña es obligatoria.')
+		array('password', 'message' => 'Contraseña es obligatoria.'),
+		array('admin', 'message' => 'El rol de administrador es requerido.')
 
 	);
 

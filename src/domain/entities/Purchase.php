@@ -4,7 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/config.php';
 
 class Purchase extends ActiveRecord\Model{
 
-	public static $table_name = 'expense.purchase';
+	public static $table_name = 'purchase';
 	public static $primary_key = 'purchase_id';
 
 	public static $alias_attribute = array(

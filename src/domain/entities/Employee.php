@@ -4,7 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/config.php';
 
 class Employee extends ActiveRecord\Model{
 
-	public static $table_name = 'super.employee'; 
+	public static $table_name = 'employee'; 
 
     public static $primary_key = 'employee_code'; 
 
@@ -39,7 +39,7 @@ class Employee extends ActiveRecord\Model{
 
 		array('user', 'class_name' => 'User', 'foreign_key' => 'user_dni')
 
-	);/**/
+	);
 
 	public static $has_many = array(
 
@@ -55,7 +55,7 @@ class Employee extends ActiveRecord\Model{
 
 		)
 
-	);
+	);/**/
 
 }
 

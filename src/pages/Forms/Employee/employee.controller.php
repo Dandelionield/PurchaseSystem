@@ -13,7 +13,7 @@ class EmployeeController{
 
 		try{
 
-			if (count($POST)!=4){
+			if (count($POST)!=5){
 
 				throw new Exception('Number of fields are incongruent.');
 
@@ -81,7 +81,7 @@ class EmployeeController{
 			$isTrue = $adminBackup==='true';
 			$isFalse = $adminBackup==='false';
 
-			if (!$isTrue && !isFalse){
+			if (!$isTrue && !$isFalse){
 
 				throw new Exception('Admin field values are incorrect');
 
@@ -141,6 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 			echo json_encode([
 
+				'type' => 'insert',
 				'status' => 'success',
 				'message' => 'Employee succesfully created',
 				'url' => 'http://localhost/PurchaseSystem/src/pages/Forms/Employee/employee.page.php'
@@ -149,7 +150,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 			exit();
 
-		}
+		}/**/
 
 	}catch(Exception $e){
 

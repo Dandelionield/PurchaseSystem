@@ -47,7 +47,7 @@ class AuthController{
 
 			}
 
-			$this->employee = Employee::find_by_code($employee_code, [
+			$this->employee = Employee::find_by_code([$employee_code], [
 
 				'conditions' => ['state = ?', true]
 
@@ -104,14 +104,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 		}else{
 
+			$name = $auth->getEmployeeName();
+
 			$_SESSION['employee_code'] = $auth->getEmployeeCode();
+			$_SESSION['employee_name'] = $name;
 
 			header('Content-Type: application/json');
 
 			echo json_encode([
 
 				'status' => 'success',
-				'message' => 'Welcome '. $auth->getEmployeeName(),
+				'message' => 'Welcome '. $name,
 				'url' => 'http://localhost/PurchaseSystem/src/pages/Home/home.page.php'
 
 			]);

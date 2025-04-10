@@ -4,7 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/config.php';
 
 class User extends ActiveRecord\Model{
 
-	public static $table_name = 'super.user'; 
+	public static $table_name = 'user'; 
 
     public static $primary_key = 'user_dni'; 
 

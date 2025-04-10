@@ -61,7 +61,7 @@
 
 		</div>
 
-	<script src="http://localhost/PurchaseSystem/src/common/request.interceptor.controller.js"></script>
+		<!--><script src="http://localhost/PurchaseSystem/src/common/request.interceptor.controller.js"></script><!-->
 
 	</body>
 

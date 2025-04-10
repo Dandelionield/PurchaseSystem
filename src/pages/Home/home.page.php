@@ -1,5 +1,7 @@
 <?php
 
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/components/Header/header.component.php';
+
 	$home_url = 'http://localhost/PurchaseSystem/src/pages/Home/';
 
 ?>
@@ -20,15 +22,11 @@
 
 	<body>
 
-		<?php
-
-			require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/components/header/header.component.php';
-
-		?>
+		<?=HeaderComponent(Employee::find_by_code([$_SESSION['employee_code']]))?>
 
 		<div class="welcome-container">
 
-			<h1 class="welcome-text">Welcome<br><span><?= $name ?></span></h1>
+			<h1 class="welcome-text">Welcome<br><span><?= $_SESSION['employee_name'] ?></span></h1>
 
 		</div>
 

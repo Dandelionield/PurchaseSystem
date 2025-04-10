@@ -4,7 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/config.php';
 
 class Buyout extends ActiveRecord\Model{
 
-	public static $table_name = 'expense.buyout';
+	public static $table_name = 'buyout';
 	public static $primary_key = 'buyout_id';
 
 	public static $alias_attribute = array(

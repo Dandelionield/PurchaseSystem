@@ -10,19 +10,23 @@
 
 	}
 
-function HeaderComponent(?Employee $employee){
+	$header_url = 'http://localhost/PurchaseSystem/src/components/Header/';
 
-	$header_url = 'http://localhost/PurchaseSystem/src/components/header/';
+?>
+
+<link rel="stylesheet" href="<?= $header_url?>header.component.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<?php
+
+function HeaderComponent(?Employee $employee): string{
 
 	$name = $_SESSION['employee_name'];
+	$header_url = 'http://localhost/PurchaseSystem/src/components/header/';
 
 	ob_start();
 
 ?>
-
-	<link rel="stylesheet" href="<?= $header_url?>header.component.css">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
 
 	<div id ='header'>
 

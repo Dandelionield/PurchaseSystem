@@ -1,13 +1,15 @@
 
 if (document.getElementById('form')!=null){
 
-	document.getElementById('form').onsubmit = function(event){
+	let Form = document.getElementById('form');
+
+	Form.onsubmit = function(event){
 
 		event.preventDefault();
 
 		const formData = new FormData(this);
 
-		fetch(document.getElementById('form').action, {
+		fetch(Form.action, {
 
 			method: 'POST',
 			body: formData
@@ -49,7 +51,7 @@ async function formWarning(data){
 
 	const shot = await Swal.fire({
 	
-		title: b ? 'Error' : 'Exito',
+		title: b ? 'Error' : 'Success',
 		text: data.message,
 		icon: b ? 'error' : 'success',
 		showCancelButton: !b ? c : b,

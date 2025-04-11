@@ -74,7 +74,7 @@ class AuthController{
 
 	public function verify(): bool{
 
-		return $this->password===$this->employee->password;
+		return isset($this->employee) ? $this->password===$this->employee->password : false;
 
 	}
 

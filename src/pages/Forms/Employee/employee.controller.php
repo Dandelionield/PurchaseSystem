@@ -9,17 +9,17 @@ class EmployeeController{
 
 	private ?Employee $employee;
 
-	public function __construct(array $POST){
+	public function __construct(array $POST, bool $isPatch=false){
 
 		try{
 
-			if (count($POST)!=5){
+			if (count($POST)!=(5 - ($isPatch ? 1 : 0))){
 
 				throw new Exception('Number of fields are incongruent.');
 
 			}
 
-			if (!array_key_exists('code', $POST)){
+			if (!array_key_exists('code', $POST) && !$isPatch){
 
 				throw new Exception('Code field missing.');
 
@@ -43,12 +43,12 @@ class EmployeeController{
 
 			}
 
-			$code = trim($POST['code']);
+			$code = trim(isset($POST['code']) ? $POST['code'] : '');
 			$dni = trim($POST['dni']);
 			$password = trim($POST['password']);
 			$adminBackup = strtolower(trim($POST['admin']));
 
-			if (empty($code)){
+			if (empty($code) && !$isPatch){
 
 				throw new Exception('DNI cannot be empty.');
 
@@ -72,7 +72,7 @@ class EmployeeController{
 
 			}
 
-			if (!ctype_digit($code) || strlen($code)!=10){
+			if ((!ctype_digit($code) || strlen($code)!=10) && !$isPatch){
 
 				throw new Exception("Code must be a length's 10 positive integer.");
 
@@ -87,9 +87,18 @@ class EmployeeController{
 
 			}
 
-			$this->employee = new Employee();
+			if (!$isPatch){
 
-			$this->employee->code = $code;
+				$this->employee = new Employee();
+				$this->employee->code = $code;
+
+			}else{
+
+				$this->employee = Employee::find_by_code($_SESSION['updated_employee']);
+				$_SESSION['updated_employee'] = '';
+
+			}
+
 			$this->employee->dni = $dni;
 			$this->employee->password = $password;
 			$this->employee->admin = $isTrue;
@@ -113,6 +122,18 @@ class EmployeeController{
 
 	public function insert(): bool{
 
+		if (Employee::exists($this->employee->code)){
+
+			throw new Exception('Employee already exist.');
+
+		}
+
+		return $this->employee->save();
+
+	}
+
+	public function update(): bool{
+
 		return $this->employee->save();
 
 	}
@@ -125,9 +146,37 @@ class EmployeeController{
 
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+try{
 
-	try{
+	$type = '';
+	$state = true;
+
+	if ($_SERVER['REQUEST_METHOD'] === 'DELETE'){
+
+		$json = file_get_contents('php://input');
+		$data = json_decode($json, true);
+
+		if (!isset($data['code'])){
+
+			throw new Exception('Code paramether is missing.');
+
+		}
+
+		$employee = Employee::find_by_code($data['code']);
+
+		if (!isset($employee)){
+
+			throw new Exception('Employee with code '. $code .' not found');
+
+		}
+
+		$state = $employee->state = !$employee->state;
+
+		$employee->save();
+
+		$type = 'update';
+
+	} else if ($_SERVER['REQUEST_METHOD']==='POST' && $_SESSION['REAL_METHOD']==='POST') {
 
 		$empController = new EmployeeController($_POST);
 
@@ -135,37 +184,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 			throw new Exception($empController->getErrors());
 
-		}else{
+		}
 
-			header('Content-Type: application/json');
+		$type = 'insert';
 
-			echo json_encode([
+	}else if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SESSION['REAL_METHOD']==='PATCH'){
 
-				'type' => 'insert',
-				'status' => 'success',
-				'message' => 'Employee succesfully created',
-				'url' => 'http://localhost/PurchaseSystem/src/pages/Forms/Employee/employee.page.php'
+		$empController = new EmployeeController($_POST, true);
 
-			]);
+		if (!$empController->update()){
 
-			exit();
+			throw new Exception($empController->getErrors());
 
-		}/**/
+		}
 
-	}catch(Exception $e){
-
-		header('Content-Type: application/json');
-
-		echo json_encode([
-
-			'status' => 'error',
-			'message' => $e->getMessage()
-
-		]);
-
-		exit();
+		$type = 'update';
 
 	}
+
+	header('Content-Type: application/json');
+
+	echo json_encode([
+
+		'type' => $type . $_SERVER['REQUEST_METHOD'],
+		'status' => 'success',
+		'state' => $state,
+		'message' => 'Employee succesfully '. $type .'d',
+		'url' => 'http://localhost/PurchaseSystem/src/pages/Forms/Employee/employee.page.php'
+
+	]);
+
+	exit();
+
+}catch(Exception $e){
+
+	header('Content-Type: application/json');
+
+	echo json_encode([
+
+		'status' => 'error',
+		'message' => $e->getMessage()
+
+	]);
+
+	exit();
 
 }
 

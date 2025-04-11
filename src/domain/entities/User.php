@@ -19,23 +19,25 @@ class User extends ActiveRecord\Model{
 
 	public static $validates_presence_of = array(
 
-		array('user_dni', 'message' => 'La cedula es obligatoria.'),
-		array('name', 'message' => 'El nombre es obligatorio.')
+		array('user_dni', 'message' => 'DNI is required.'),
+		array('name', 'message' => 'Name is required.'),
+		array('email', 'message' => 'Email is required.'),
+		array('password', 'message' => 'Password is required.')
 
 	);
 
 	public static $validates_length_of = array(
 
-		array('user_dni', 'maximum' => 20, 'too_long' => 'Cedula excede el tamaño maximo de caracteres.'),
-		array('name', 'maximum' => 100, 'too_long' => 'Nombre excede el tamaño maximo de caracteres.'),
-		array('email', 'maximum' => 100, 'too_long' => 'Email excede el tamaño maximo de caracteres.'),
-		array('address', 'maximum' => 100, 'too_long' => 'Direccion excede el tamaño maximo de caracteres.')
+		array('user_dni', 'maximum' => 20, 'too_long' => 'DNI surpases the maximum length required.'),
+		array('name', 'maximum' => 100, 'too_long' => 'Name surpases the maximum length required.'),
+		array('email', 'maximum' => 100, 'too_long' => 'Email surpases the maximum length required.'),
+		array('password', 'maximum' => 30, 'too_long' => 'Password surpases the maximum length required.')
 
 	);
 
 	public static $validates_uniqueness_of = array(
 
-		array('email', 'message' => 'Correo ya registrado')
+		array('email', 'message' => 'Email already signed up.')
 
 	);
 
@@ -48,16 +50,6 @@ class User extends ActiveRecord\Model{
 	static $has_many = array(
 
 		array('purchases', 'class_name' => 'Purchase', 'foreign_key' => 'user_dni')
-
-	);
-
-	public static $scope = array(
-
-		'actives' => array(
-
-			'conditions' => array('state = ?', true)
-
-		)
 
 	);
 

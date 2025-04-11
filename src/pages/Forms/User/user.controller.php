@@ -2,32 +2,37 @@
 
 	session_start();
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/config.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/domain/entities/Employee.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/domain/entities/User.php';
 
-class EmployeeController{
+class UserController{
 
-	private ?Employee $employee;
+	private ?User $user;
 
 	public function __construct(array $POST, bool $isPatch=false){
 
 		try{
 
-			if (count($POST)!=(5 - ($isPatch ? 1 : 0))){
+			if (count($POST)!=6){
 
 				throw new Exception('Number of fields are incongruent.');
-
-			}
-
-			if (!array_key_exists('code', $POST) && !$isPatch){
-
-				throw new Exception('Code field missing.');
 
 			}
 
 			if (!array_key_exists('dni', $POST)){
 
 				throw new Exception('DNI field missing.');
+
+			}
+
+			if (!array_key_exists('name', $POST)){
+
+				throw new Exception('Name field missing.');
+
+			}
+
+			if (!array_key_exists('email', $POST)){
+
+				throw new Exception('Email field missing.');
 
 			}
 
@@ -43,20 +48,34 @@ class EmployeeController{
 
 			}
 
-			$code = trim(isset($POST['code']) ? $POST['code'] : '');
+			if (!array_key_exists('login', $POST)){
+
+				throw new Exception('Login field is missing.');
+
+			}
+
 			$dni = trim($POST['dni']);
+			$name = trim($POST['name']);
+			$email = trim($POST['email']);
 			$password = trim($POST['password']);
 			$adminBackup = strtolower(trim($POST['admin']));
+			$loginBackup = strtolower(trim($POST['login']));
 
-			if (empty($code) && !$isPatch){
+			if (empty($dni)){
 
 				throw new Exception('DNI cannot be empty.');
 
 			}
 
-			if (empty($dni)){
+			if (empty($name)){
 
-				throw new Exception('DNI cannot be empty.');
+				throw new Exception('Name cannot be empty.');
+
+			}
+
+			if (empty($email)){
+
+				throw new Exception('Email cannot be empty.');
 
 			}
 
@@ -72,9 +91,15 @@ class EmployeeController{
 
 			}
 
-			if ((!ctype_digit($code) || strlen($code)!=10) && !$isPatch){
+			if (empty($loginBackup)){
 
-				throw new Exception("Code must be a length's 10 positive integer.");
+				throw new Exception('Login cannot be empty.');
+
+			}
+
+			if (!ctype_digit($dni) || strlen($dni)!=10){
+
+				throw new Exception("DNI's length must be 10  and apositive integer.");
 
 			}
 
@@ -87,21 +112,36 @@ class EmployeeController{
 
 			}
 
-			if (!$isPatch){
+			$admin = $isTrue ? 1 : 0;
 
-				$this->employee = new Employee();
-				$this->employee->code = $code;
+			$isTrue = $loginBackup==='true';
+			$isFalse = $loginBackup==='false';
 
-			}else{
+			if (!$isTrue && !$isFalse){
 
-				$this->employee = Employee::find_by_code($_SESSION['updated_employee']);
-				$_SESSION['updated_employee'] = '';
+				throw new Exception('Login field values are incorrect');
 
 			}
 
-			$this->employee->dni = $dni;
-			$this->employee->password = $password;
-			$this->employee->admin = $isTrue;
+			$login = $isTrue ? 1 : 0;
+
+			if (!$isPatch){
+
+				$this->user = new User();
+
+			}else{
+
+				$this->user = User::find_by_dni($_SESSION['updated_user']);
+				$_SESSION['updated_user'] = '';
+
+			}
+
+			$this->user->dni = $dni;
+			$this->user->name = $name;
+			$this->user->email = $email;
+			$this->user->password = $password;
+			$this->user->admin = $admin;
+			$this->user->login = $login;
 
 		}catch(Exception $e){
 
@@ -122,25 +162,33 @@ class EmployeeController{
 
 	public function insert(): bool{
 
-		if (Employee::exists($this->employee->code)){
+		if (User::exists($this->user->dni)){
 
-			throw new Exception('Employee already exist.');
+			throw new Exception('User already exist.');
 
 		}
 
-		return $this->employee->save();
+		return $this->user->save();
 
 	}
 
 	public function update(): bool{
 
-		return $this->employee->save();
+		return $this->user->save();
 
 	}
 
 	public function getErrors(): string{
 
-		return $this->employee->errors->full_messages();
+		$errors = "";
+
+		foreach($this->purchase->errors->full_messages() as $e){
+
+			$errors = $errors .", ". $e;
+
+		}
+
+		return $errors;
 
 	}
 
@@ -156,29 +204,29 @@ try{
 		$json = file_get_contents('php://input');
 		$data = json_decode($json, true);
 
-		if (!isset($data['code'])){
+		if (!isset($data['dni'])){
 
-			throw new Exception('Code paramether is missing.');
-
-		}
-
-		$employee = Employee::find_by_code($data['code']);
-
-		if (!isset($employee)){
-
-			throw new Exception('Employee with code '. $code .' not found');
+			throw new Exception('DNI paramether is missing.');
 
 		}
 
-		$state = $employee->state = !$employee->state;
+		$user = User::find_by_dni($data['dni']);
 
-		$employee->save();
+		if (!isset($user)){
+
+			throw new Exception('User with dni '. $dni .' not found');
+
+		}
+
+		$state = $user->state = !$user->state;
+
+		$user->save();
 
 		$type = 'update';
 
 	} else if ($_SERVER['REQUEST_METHOD']==='POST' && $_SESSION['REAL_METHOD']==='POST') {
 
-		$empController = new EmployeeController($_POST);
+		$empController = new UserController($_POST);
 
 		if (!$empController->insert()){
 
@@ -190,7 +238,7 @@ try{
 
 	}else if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_SESSION['REAL_METHOD']==='PATCH'){
 
-		$empController = new EmployeeController($_POST, true);
+		$empController = new UserController($_POST, true);
 
 		if (!$empController->update()){
 
@@ -206,11 +254,11 @@ try{
 
 	echo json_encode([
 
-		'type' => $type . $_SERVER['REQUEST_METHOD'],
+		'type' => $type,
 		'status' => 'success',
 		'state' => $state,
-		'message' => 'Employee succesfully '. $type .'d',
-		'url' => 'http://localhost/PurchaseSystem/src/pages/Forms/Employee/employee.page.php'
+		'message' => 'User succesfully '. $type .'d',
+		'url' => 'http://localhost/PurchaseSystem/src/pages/Forms/User/User.page.php'
 
 	]);
 

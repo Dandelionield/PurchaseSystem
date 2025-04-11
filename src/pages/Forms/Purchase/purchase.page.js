@@ -9,15 +9,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-function showForm(code){
+function showForm(id){
 
-    fetch("http://localhost/PurchaseSystem/src/components/Forms/Employee/EmployeeInsert/employee_insert.component.php" + (code!=null ? "?code="+code : "")).then(
+    fetch("http://localhost/PurchaseSystem/src/components/Forms/Purchase/PurchaseForm/purchase_form.component.php" + (id!=null ? "?id="+id : "")).then(
 	
 		response => response.text()
 	
 	).then(data => {
-		
-        document.getElementById('employeeModal').innerHTML = data;
+
+        document.getElementById('PurchaseModal').innerHTML = data;
 		
 		let script = document.getElementById('controller');
 		
@@ -35,9 +35,8 @@ function showForm(code){
 
 		document.body.appendChild(script);
 
-		const modal = new bootstrap.Modal('#employeeModal');
+		const modal = new bootstrap.Modal('#PurchaseModal');
 		document.getElementById('form').reset();
-		document.getElementById('modalTitle').textContent = 'New Employee';
 		modal.show();
 
     }).catch(error => 

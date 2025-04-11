@@ -16,7 +16,7 @@ if (document.getElementById('form')!=null){
 
 		}).then(response =>{
 
-			//console.log(response);
+			//console.log(response.text());
 			return response.json();
 
 		}).then(data => {

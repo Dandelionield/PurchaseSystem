@@ -22,11 +22,17 @@
 
 	<body>
 
-		<?=HeaderComponent(Employee::find_by_code([$_SESSION['employee_code']]))?>
+		<?php
+
+			$user = User::find_by_dni($_SESSION['user_dni']);
+
+		?>
+
+		<?=HeaderComponent($user)?>
 
 		<div class="welcome-container">
 
-			<h1 class="welcome-text">Welcome<br><span><?= $_SESSION['employee_name'] ?></span></h1>
+			<h1 class="welcome-text">Welcome<br><span><?=$user->name?></span></h1>
 
 		</div>
 

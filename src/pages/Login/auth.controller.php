@@ -2,12 +2,11 @@
 
 	session_start();
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/config.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/domain/entities/Employee.php';
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/domain/entities/User.php';
 
 class AuthController{
 
-	private ?Employee $employee;
+	private ?User $user;
 	private ?string $password;
 
 	public function __construct(array $POST){
@@ -20,9 +19,9 @@ class AuthController{
 
 			}
 
-			if (!array_key_exists('employee_code', $POST)){
+			if (!array_key_exists('email', $POST)){
 
-				throw new Exception('Code field missing.');
+				throw new Exception('Email field missing.');
 
 			}
 
@@ -32,10 +31,10 @@ class AuthController{
 
 			}
 
-			$employee_code = trim($POST['employee_code']);
+			$email = trim($POST['email']);
 			$password = trim($POST['password']);
 
-			if (empty($employee_code)){
+			if (empty($email)){
 
 				throw new Exception('Code field cannot be empty.');
 
@@ -47,7 +46,7 @@ class AuthController{
 
 			}
 
-			$this->employee = Employee::find_by_code([$employee_code], [
+			$this->user = User::find_by_email([$email], [
 
 				'conditions' => ['state = ?', true]
 
@@ -74,19 +73,19 @@ class AuthController{
 
 	public function verify(): bool{
 
-		return isset($this->employee) ? $this->password===$this->employee->password : false;
+		return isset($this->user) ? $this->password===$this->user->password : false;
 
 	}
 
-	public function getEmployeeName(): string{
+	public function getUserName(): string{
 
-		return User::find([$this->employee->dni])->name;
+		return $this->user->name;
 
 	}
 
-	public function getEmployeeCode(): string{
+	public function getUserDNI(): string{
 
-		return $this->employee->code;
+		return $this->user->dni;
 
 	}
 
@@ -104,10 +103,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 		}else{
 
-			$name = $auth->getEmployeeName();
+			$name = $auth->getUserName();
 
-			$_SESSION['employee_code'] = $auth->getEmployeeCode();
-			$_SESSION['employee_name'] = $name;
+			$_SESSION['user_dni'] = $auth->getUserDNI();
 
 			header('Content-Type: application/json');
 

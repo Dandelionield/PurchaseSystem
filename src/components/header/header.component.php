@@ -2,9 +2,9 @@
 
 	session_start();
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/config.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/domain/entities/Employee.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/domain/entities/User.php';
 
-	if (!isset($_SESSION['employee_code'])){
+	if (!isset($_SESSION['user_dni'])){
 
 		header('Location: http://localhost/PurchaseSystem/');
 
@@ -19,9 +19,8 @@
 
 <?php
 
-function HeaderComponent(?Employee $employee): string{
+function HeaderComponent(?User $user): string{
 
-	$name = $_SESSION['employee_name'];
 	$header_url = 'http://localhost/PurchaseSystem/src/components/header/';
 
 	ob_start();
@@ -40,14 +39,14 @@ function HeaderComponent(?Employee $employee): string{
 
 				</button>
 
-				<a class="navbar-brand" href="#">
+				<a class="navbar-brand" href="http://localhost/PurchaseSystem/src/Pages/Home/home.page.php">
 					Purchase System
 				</a>
 
 				<div class="d-flex align-items-center text-light">
 
 					<i class="fas fa-user-circle me-2"></i>
-					<?= $employee!=null ? $name : 'User' ?>
+					<?= $user!=null ? $user->name : 'User' ?>
 
 					<a href="http://localhost/PurchaseSystem/" class="btn btn-outline-light btn-sm ms-3">
 
@@ -69,39 +68,29 @@ function HeaderComponent(?Employee $employee): string{
 
 					</div>
 
-					<h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted">
+					<?php if ($user->admin == 1): ?>
 
-						<i class="fas fa-cogs me-2"></i>Administration
+						<h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted">
 
-					</h6>
+							<i class="fas fa-cogs me-2"></i>Administration
 
-					<ul class="nav flex-column">
+						</h6>
 
-						<li class="nav-item">
-
-							<a class="nav-link active" href="http://localhost/PurchaseSystem/src/pages/Forms/Employee/employee.page.php">
-
-								<i class="fas fa-users-cog me-2"></i>Employees
-
-							</a>
-
-						</li>
-
-						<?php if ($employee->admin == 1): ?>
+						<ul class="nav flex-column">
 
 							<li class="nav-item">
 
-								<a class="nav-link" href="/PurchaseSystem/src/views/clientes.php">
+								<a class="nav-link active" href="http://localhost/PurchaseSystem/src/pages/Forms/User/User.page.php">
 
-									<i class="fas fa-users me-2"></i>Clients
+									<i class="fas fa-users-cog me-2"></i>Users
 
 								</a>
 
 							</li>
 
-						<?php endif; ?>
+						</ul>
 
-					</ul>
+					<?php endif; ?>
 
 					<h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted">
 
@@ -113,19 +102,9 @@ function HeaderComponent(?Employee $employee): string{
 
 						<li class="nav-item">
 
-							<a class="nav-link" href="#">
+							<a class="nav-link" href="http://localhost/PurchaseSystem/src/pages/Forms/Purchase/purchase.page.php">
 
 								<i class="fas fa-cart-plus me-2"></i>New Purchase
-
-							</a>
-
-						</li>
-
-						<li class="nav-item">
-
-							<a class="nav-link" href="#">
-
-								<i class="fas fa-chart-bar me-2"></i>Reports
 
 							</a>
 

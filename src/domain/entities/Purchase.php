@@ -10,27 +10,19 @@ class Purchase extends ActiveRecord\Model{
 	public static $alias_attribute = array(
 
 		'id' => 'purchase_id',
-		'code' => 'purchase_code'
+		'user' => 'user_dni'
 
 	);
 
 	public static $validates_presence_of = array(
 
-		array('user_dni', 'message' => 'Usuario es obligatorio.'),
-		array('employee_code', 'message' => 'Empleado es obligatorio.')
+		array('user_dni', 'message' => 'User  is required.')
 
 	);
 
 	public static $belongs_to = array(
 
-		array('user', 'class_name' => 'User', 'foreign_key' => 'user_dni'),
-		array('employee', 'class_name' => 'Employee', 'foreign_key' => 'employee_code')
-
-	);
-
-	public static $has_many = array(
-
-		array('buyouts', 'class_name' => 'Buyout', 'foreign_key' => 'purchase_id')
+		array('user', 'class_name' => 'User', 'foreign_key' => 'user_dni')
 
 	);
 

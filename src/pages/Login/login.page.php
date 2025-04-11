@@ -1,7 +1,7 @@
 <?php
 
 	session_start();
-	$_SESSION['employee_code'] = null;
+	$_SESSION['user_dni'] = null;
 
 ?>
 
@@ -39,9 +39,9 @@
 
 						<div class="mb-3">
 
-							<label for="employee_code" class="form-label">Employee's Code</label>
+							<label for="email" class="form-label">User's email</label>
+							<input type="text" class="form-control" id="email" name="email">
 
-							<input type="text" class="form-control" id="employee_code" name="employee_code">
 						</div>
 
 						<div class="mb-4">

@@ -26,13 +26,13 @@ async function warning(b){
 
 }
 
-async function toggle(code, state){
+async function toggle(id, state){
 
 	const b = await warning(state);
 
 	if (b){
 
-		fetch("http://localhost/PurchaseSystem/src/pages/Forms/Employee/employee.controller.php",{
+		fetch("http://localhost/PurchaseSystem/src/pages/Forms/Purchase/Purchase.controller.php",{
 
 			method: 'DELETE',
 			headers: {
@@ -41,7 +41,7 @@ async function toggle(code, state){
 
 			}, body: JSON.stringify({
 
-				code: code
+				id: id
 
 			})
 
@@ -55,16 +55,20 @@ async function toggle(code, state){
 
 				Swal.fire(data.state ? 'Activated' : 'Deactivated', 'Employee has been successfully '+(data.state ? 'activated' : 'deactivated')+'.', 'success');
 
-				const Checkbox = document.getElementById(code);
+				const Checkbox = document.getElementById(id);
 				Checkbox.checked = data.state;
+
+			}else{
+
+				formWarning(data);
 
 			}
 
-		}).catch(error => 
-		
-			console.error('Error al cargar la información del item:', error)
+		}).catch(e => {
+
+			console.error('Error al cargar la información del item:', e);
 			
-		);
+		});
 
 	}
 

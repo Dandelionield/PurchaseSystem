@@ -5,14 +5,14 @@
 
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Employees</title>
+		<title>Users</title>
 
 		<?php
 
 			require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/components/Header/header.component.php';
-			require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/components/Forms/Employee/EmployeeRow/employee_row.component.php';
+			require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/components/Forms/User/UserRow/user_row.component.php';
 
-			$employee_url = 'http://localhost/PurchaseSystem/src/pages/Forms/Employee/';
+			$user_url = 'http://localhost/PurchaseSystem/src/pages/Forms/User/';
 
 		?>
 
@@ -22,19 +22,19 @@
 		<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.7/dist/sweetalert2.min.js"></script>
 
 
-		<link rel="stylesheet" href="<?=$employee_url?>employee.page.css">
+		<link rel="stylesheet" href="<?=$user_url?>user.page.css">
 
 	</head>
 
 	<body>
 
-		<?=HeaderComponent(Employee::find_by_code([$_SESSION['employee_code']]))?>
+		<?=HeaderComponent(User::find_by_dni([$_SESSION['user_dni']]))?>
 
 		<div class="container mt-4">
 
 			<div class="d-flex justify-content-between align-items-center mb-4">
 
-				<h2>Employee Management</h2>
+				<h2>User Management</h2>
 
 				<button class="btn btn-success" id="btnAdd">
 
@@ -46,14 +46,17 @@
 
 			<div class="table-responsive">
 
-				<table class="table table-striped table-hover" id="employeesTable">
+				<table class="table table-striped table-hover" id="UsersTable">
 
 					<thead class="table-dark">
 
 						<tr>
-							<th>Code</th>
+
+							<th>DNI</th>
 							<th>Name</th>
+							<th>Email</th>
 							<th>Admin</th>
+							<th>Login</th>
 							<th>State</th>
 							<th>Actions</th>
 
@@ -65,13 +68,13 @@
 
 						<?php
 
-							$employees = @Employee::all();
+							$users = @User::all();
 
 						?>
 
-						<?php foreach($employees as $emp): ?>
+						<?php foreach($users as $user): ?>
 
-							<?=EmployeeRow($emp)?>
+							<?=UserRow($user)?>
 
 						<?php endforeach; ?>
 
@@ -83,9 +86,9 @@
 
 		</div>
 
-		<div class="modal fade" id="employeeModal" tabindex="-1"></div>
+		<div class="modal fade" id="UserModal" tabindex="-1"></div>
 
-		<script src="<?=$employee_url?>employee.page.js"></script>
+		<script src="<?=$user_url?>user.page.js"></script>
 
 	</body>
 

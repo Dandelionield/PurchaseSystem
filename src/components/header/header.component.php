@@ -1,16 +1,16 @@
 <?php
 
 	session_start();
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/config.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/domain/entities/User.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . BASE_URL . 'config.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . BASE_URL . 'domain/entities/User.php';
 
 	if (!isset($_SESSION['user_dni'])){
 
-		header('Location: http://localhost/PurchaseSystem/');
+		header('Location: '.BASE_URL);
 
 	}
 
-	$header_url = 'http://localhost/PurchaseSystem/src/components/Header/';
+	$header_url = BASE_URL . 'components/Header/';
 
 ?>
 
@@ -21,7 +21,7 @@
 
 function HeaderComponent(?User $user): string{
 
-	$header_url = 'http://localhost/PurchaseSystem/src/components/header/';
+	$header_url = BASE_URL . 'components/header/';
 
 	ob_start();
 
@@ -39,7 +39,7 @@ function HeaderComponent(?User $user): string{
 
 				</button>
 
-				<a class="navbar-brand" href="http://localhost/PurchaseSystem/src/Pages/Home/home.page.php">
+				<a class="navbar-brand" href="<?= BASE_URL ?>Pages/Home/home.page.php">
 					Purchase System
 				</a>
 
@@ -48,7 +48,7 @@ function HeaderComponent(?User $user): string{
 					<i class="fas fa-user-circle me-2"></i>
 					<?= $user!=null ? $user->name : 'User' ?>
 
-					<a href="http://localhost/PurchaseSystem/" class="btn btn-outline-light btn-sm ms-3">
+					<a href="<?= BASE_URL ?>" class="btn btn-outline-light btn-sm ms-3">
 
 						<i class="fas fa-sign-out-alt"></i>
 
@@ -80,7 +80,7 @@ function HeaderComponent(?User $user): string{
 
 							<li class="nav-item">
 
-								<a class="nav-link active" href="http://localhost/PurchaseSystem/src/pages/Forms/User/User.page.php">
+								<a class="nav-link active" href="<?= BASE_URL ?>pages/Forms/User/User.page.php">
 
 									<i class="fas fa-users-cog me-2"></i>Users
 
@@ -102,7 +102,7 @@ function HeaderComponent(?User $user): string{
 
 						<li class="nav-item">
 
-							<a class="nav-link" href="http://localhost/PurchaseSystem/src/pages/Forms/Purchase/purchase.page.php">
+							<a class="nav-link" href="<?= BASE_URL ?>pages/Forms/Purchase/purchase.page.php">
 
 								<i class="fas fa-cart-plus me-2"></i>New Purchase
 

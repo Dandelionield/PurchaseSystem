@@ -1,8 +1,8 @@
 <?php
 
 	session_start();
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/config.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/domain/entities/User.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . BASE_URL . 'config.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . BASE_URL . 'domain/entities/User.php';
 
 class AuthController{
 
@@ -113,7 +113,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 				'status' => 'success',
 				'message' => 'Welcome '. $name,
-				'url' => 'http://localhost/PurchaseSystem/src/pages/Home/home.page.php'
+				'url' => BASE_URL . 'pages/Home/home.page.php'
 
 			]);
 

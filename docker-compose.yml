@@ -1,0 +1,33 @@
+services:
+  php:
+    build: .
+    volumes:
+      - .:/var/www
+    depends_on:
+      - mysql
+
+  nginx:
+    image: nginx:1.14
+    ports:
+      - "80:80"
+    volumes:
+      - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+      - .:/var/www
+    depends_on:
+      - php
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: expenses
+      MYSQL_USER: expenses
+      MYSQL_PASSWORD: lambda73
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/expenses.sql:/docker-entrypoint-initdb.d/expenses.sql
+    ports:
+      - "3306:3306"
+
+volumes:
+  mysql_data:

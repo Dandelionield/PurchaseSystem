@@ -1,6 +1,9 @@
 <?php
 
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/lib/php-activerecord/ActiveRecord.php';
+	define('BASE_URL', '/');
+	//define('BASE_URL', '/PurchaseSystem/src/');
+
+	require_once '/lib/php-activerecord/ActiveRecord.php';
 
 	ActiveRecord\Config::initialize(function($cfg) {
 
@@ -15,7 +18,5 @@
 		$cfg->set_default_connection('development');
 
 	});
-
-	//ActiveRecord\Connection::$quote_identifiers = false;
 
 ?>

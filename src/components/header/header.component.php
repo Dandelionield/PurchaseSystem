@@ -2,7 +2,7 @@
 
 	session_start();
 	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/config.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/domain/entities/User.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/models/User.php';
 
 	if (!isset($_SESSION['user_dni'])){
 

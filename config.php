@@ -4,7 +4,7 @@
 
 	ActiveRecord\Config::initialize(function($cfg) {
 
-		$cfg->set_model_directory($_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/domain/entities');
+		$cfg->set_model_directory($_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/models');
 		$cfg->set_connections([
 
 			'development' => 'mysql://expenses:lambda73@localhost/expenses',

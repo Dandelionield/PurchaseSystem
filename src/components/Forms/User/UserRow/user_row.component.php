@@ -1,6 +1,6 @@
 <?php
 
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/domain/entities/User.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/models/User.php';
 	$user_row_url = '/PurchaseSystem/src/components/Forms/User/UserRow/';
 
 ?>

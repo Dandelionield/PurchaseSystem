@@ -11,7 +11,7 @@
 
 			require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/components/Header/header.component.php';
 			require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/components/Forms/Purchase/PurchaseRow/purchase_row.component.php';
-			require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/domain/entities/Purchase.php';
+			require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/models/Purchase.php';
 
 			$purchase_url = '/PurchaseSystem/src/pages/Forms/Purchase/';
 

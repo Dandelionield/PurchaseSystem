@@ -1,9 +1,6 @@
 <?php
 
-	define('BASE_URL', '/');
-	//define('BASE_URL', '/PurchaseSystem/src/');
-
-	require_once '/lib/php-activerecord/ActiveRecord.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/lib/php-activerecord/ActiveRecord.php';
 
 	ActiveRecord\Config::initialize(function($cfg) {
 

@@ -1,10 +1,12 @@
 #header {
-    position: fixed; /* Fija el header en la parte superior */
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1001; /* Mayor que el sidebar */
-    background: #343a40; /* Color del header */
+
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 1001;
+	background: #343a40;
+
 }
 
 .sidebar-collapse-btn {
@@ -13,26 +15,32 @@
 	color: white;
 	font-size: 1.5rem;
 	cursor: pointer;
+
 }
 
 #sidebar {
-    position: fixed;
-    top: 56px; /* Altura del header */
-    left: 0;
-    height: calc(100vh - 56px); /* Resta la altura del header */
-    width: 250px;
-    z-index: 1000;
-    background: white;
-    box-shadow: 3px 0 10px rgba(0,0,0,0.1);
-    transform: translateX(-100%);
-    transition: transform 0.3s ease-in-out;
+
+	position: fixed;
+	top: 56px;
+	left: 0;
+	height: calc(100vh - 56px);
+	width: 250px;
+	z-index: 1000;
+	background: white;
+	box-shadow: 3px 0 10px rgba(0,0,0,0.1);
+	transform: translateX(-100%);
+	transition: transform 0.3s ease-in-out;
+
 }
 
 #sidebar.show {
-    transform: translateX(0);
+
+	transform: translateX(0);
+
 }
 
-/* Añade espacio al body para el header fijo */
 body {
-    padding-top: 56px; /* Altura del header */
+
+	padding-top: 56px;
+
 }

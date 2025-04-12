@@ -183,7 +183,7 @@ try{
 		'status' => 'success',
 		'state' => $state,
 		'message' => 'Purchase succesfully '. $type .'d',
-		'url' => 'http://localhost/PurchaseSystem/src/pages/Forms/Purchase/Purchase.page.php'
+		'url' => '/PurchaseSystem/src/pages/Forms/Purchase/Purchase.page.php'
 
 	]);
 

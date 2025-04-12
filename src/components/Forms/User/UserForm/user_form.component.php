@@ -20,8 +20,8 @@ if ($id!=null){
 
 function UserInsertForm(?User $user): string{
 
-	$user_url = 'http://localhost/PurchaseSystem/src/pages/Forms/User/';
-	$user_form_url = 'http://localhost/PurchaseSystem/src/components/Forms/User/UserForm/';
+	$user_url = '/PurchaseSystem/src/pages/Forms/User/';
+	$user_form_url = '/PurchaseSystem/src/components/Forms/User/UserForm/';
 
 	ob_start();
 

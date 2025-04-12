@@ -32,7 +32,7 @@ async function toggle(id, state){
 
 	if (b){
 
-		fetch("http://localhost/PurchaseSystem/src/pages/Forms/Purchase/Purchase.controller.php",{
+		fetch("/PurchaseSystem/src/pages/Forms/Purchase/Purchase.controller.php",{
 
 			method: 'DELETE',
 			headers: {
@@ -66,7 +66,7 @@ async function toggle(id, state){
 
 		}).catch(e => {
 
-			console.error('Error al cargar la información del item:', e);
+			console.error('Error loading the item: ', e);
 			
 		});
 

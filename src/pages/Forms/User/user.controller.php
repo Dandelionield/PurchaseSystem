@@ -258,7 +258,7 @@ try{
 		'status' => 'success',
 		'state' => $state,
 		'message' => 'User succesfully '. $type .'d',
-		'url' => 'http://localhost/PurchaseSystem/src/pages/Forms/User/User.page.php'
+		'url' => '/PurchaseSystem/src/pages/Forms/User/User.page.php'
 
 	]);
 

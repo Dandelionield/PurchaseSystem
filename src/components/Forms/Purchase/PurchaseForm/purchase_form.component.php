@@ -20,8 +20,8 @@ if ($id!=null){
 
 function PurchaseInsertForm(?Purchase $purchase): string{
 
-	$purchase_url = 'http://localhost/PurchaseSystem/src/pages/Forms/Purchase/';
-	$purchase_form_url = 'http://localhost/PurchaseSystem/src/components/Forms/Purchase/PurchaseForm/';
+	$purchase_url = '/PurchaseSystem/src/pages/Forms/Purchase/';
+	$purchase_form_url = '/PurchaseSystem/src/components/Forms/Purchase/PurchaseForm/';
 
 	ob_start();
 

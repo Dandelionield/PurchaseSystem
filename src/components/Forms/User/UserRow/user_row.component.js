@@ -32,7 +32,7 @@ async function toggle(dni, state){
 
 	if (b){
 
-		fetch("http://localhost/PurchaseSystem/src/pages/Forms/User/user.controller.php",{
+		fetch("/PurchaseSystem/src/pages/Forms/User/user.controller.php",{
 
 			method: 'DELETE',
 			headers: {

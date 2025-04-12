@@ -14,7 +14,6 @@ class User extends ActiveRecord\Model{
 
     );
 
-    // Desactiva timestamp automático (created_at/updated_at)
     public static $disable_auto_increment = true;
 
 	public static $validates_presence_of = array(

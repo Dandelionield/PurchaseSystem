@@ -1,98 +1,129 @@
 tr {
-    transition: all 0.3s ease;
-    vertical-align: middle;
+
+	transition: all 0.3s ease;
+	vertical-align: middle;
+
 }
 
 tr:hover {
-    background-color: #f8f9fa;
-    transform: translateX(4px);
+
+	background-color: #f8f9fa;
+	transform: translateX(4px);
+
 }
 
-/* Celdas principales */
 td {
-    padding: 1.2rem 0.75rem;
-    font-size: 0.95rem;
-    color: #495057;
+
+	padding: 1.2rem 0.75rem;
+	font-size: 0.95rem;
+	color: #495057;
+
 }
 
-/* Celda de acciones */
 td:last-child {
-    width: 140px;
-    text-align: center;
+
+	width: 140px;
+	text-align: center;
+
 }
 
-/* Botones de acción */
 .btn-edit, .btn-delete {
-    width: 36px;
-    height: 36px;
-    padding: 0;
-    border-radius: 50%;
-    transition: all 0.2s ease;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+
+	width: 36px;
+	height: 36px;
+	padding: 0;
+	border-radius: 50%;
+	transition: all 0.2s ease;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+
 }
 
 .btn-edit {
-    background-color: #ffc10715;
-    border-color: #ffc10730;
-    color: #ffc107;
+
+	background-color: #ffc10715;
+	border-color: #ffc10730;
+	color: #ffc107;
+
 }
 
 .btn-delete {
-    background-color: #dc354515;
-    border-color: #dc354530;
-    color: #dc3545;
-    margin-left: 0.8rem;
+
+	background-color: #dc354515;
+	border-color: #dc354530;
+	color: #dc3545;
+	margin-left: 0.8rem;
+
 }
 
-/* Hover effects */
 .btn-edit:hover {
-    background-color: #ffc107;
-    color: white;
-    transform: scale(1.1);
+
+	background-color: #ffc107;
+	color: white;
+	transform: scale(1.1);
+
 }
 
 .btn-delete:hover {
-    background-color: #dc3545;
-    color: white;
-    transform: scale(1.1);
+
+	background-color: #dc3545;
+	color: white;
+	transform: scale(1.1);
+
 }
 
-/* Iconos */
 .btn-edit i, .btn-delete i {
-    font-size: 1.1rem;
-    transition: transform 0.2s ease;
+
+	font-size: 1.1rem;
+	transition: transform 0.2s ease;
+
 }
 
-/* Responsive para móviles */
 @media (max-width: 768px) {
-    td {
-        padding: 0.8rem 0.5rem;
-        font-size: 0.85rem;
-    }
-    
-    .btn-edit, .btn-delete {
-        width: 32px;
-        height: 32px;
-    }
-    
-    td:last-child {
-        width: 110px;
-    }
+
+	td {
+
+		padding: 0.8rem 0.5rem;
+		font-size: 0.85rem;
+
+	}
+	
+	.btn-edit, .btn-delete {
+
+		width: 32px;
+		height: 32px;
+
+	}
+	
+	td:last-child {
+
+		width: 110px;
+
+	}
+
 }
 
 @keyframes rowEntrance {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+
+	from {
+
+		opacity: 0;
+		transform: translateY(10px);
+
+	}
+
+	to {
+
+		opacity: 1;
+		transform: translateY(0);
+
+	}
+
 }
 
 tr {
-    animation: rowEntrance 0.4s ease forwards;
+
+	animation: rowEntrance 0.4s ease forwards;
+
 }

@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function showForm(dni){
 
-    fetch("http://localhost/PurchaseSystem/src/components/Forms/User/UserForm/user_form.component.php" + (dni!=null ? "?dni="+dni : "")).then(
+    fetch("/PurchaseSystem/src/components/Forms/User/UserForm/user_form.component.php" + (dni!=null ? "?dni="+dni : "")).then(
 	
 		response => response.text()
 	
@@ -30,7 +30,7 @@ function showForm(dni){
 		script = document.createElement('script');
 		script.id = 'controller';
 		script.type = 'text/javascript';
-		script.src = 'http://localhost/PurchaseSystem/src/common/request.interceptor.controller.js';
+		script.src = '/PurchaseSystem/src/common/request.interceptor.controller.js';
 		script.async = true;
 
 		document.body.appendChild(script);
@@ -39,9 +39,9 @@ function showForm(dni){
 		document.getElementById('form').reset();
 		modal.show();
 
-    }).catch(error => 
+    }).catch(e => 
 	
-		console.error('Error al cargar la información del item:', error)
+		console.error('Error loading the item: ', e)
 		
 	);
 

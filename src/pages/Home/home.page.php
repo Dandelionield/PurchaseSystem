@@ -9,9 +9,9 @@
 
 		<?php
 
-			require_once $_SERVER['DOCUMENT_ROOT'] . BASE_URL . 'components/Header/header.component.php';
+			require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/components/Header/header.component.php';
 
-			$home_url = BASE_URL . 'pages/Home/';
+			$home_url = '/PurchaseSystem/src/pages/Home/';
 
 		?>
 

@@ -61,7 +61,7 @@
 
 		</div>
 
-		<!--><script src="<?= BASE_URL ?>common/request.interceptor.controller.js"></script><!-->
+		<!--><script src="/PurchaseSystem/src/common/request.interceptor.controller.js"></script><!-->
 
 	</body>
 

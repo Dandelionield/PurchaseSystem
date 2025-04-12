@@ -9,10 +9,10 @@
 
 		<?php
 
-			require_once $_SERVER['DOCUMENT_ROOT'] . BASE_URL . 'components/Header/header.component.php';
-			require_once $_SERVER['DOCUMENT_ROOT'] . BASE_URL . 'components/Forms/User/UserRow/user_row.component.php';
+			require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/components/Header/header.component.php';
+			require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/components/Forms/User/UserRow/user_row.component.php';
 
-			$user_url = BASE_URL . 'pages/Forms/User/';
+			$user_url = '/PurchaseSystem/src/pages/Forms/User/';
 
 		?>
 

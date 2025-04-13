@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php
+
+	session_start();
+
+?><!DOCTYPE html>
 <html lang="es">
 
 	<head>
@@ -9,9 +13,10 @@
 
 		<?php
 
-			require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/components/Header/header.component.php';
+			require_once $_SERVER['DOCUMENT_ROOT'] . '/src/components/Header/header.component.php';
+			require_once $_SERVER['DOCUMENT_ROOT'] . '/src/services/Session/session.service.php';
 
-			$home_url = '/PurchaseSystem/src/pages/Home/';
+			$home_url = '/src/pages/Home/';
 
 		?>
 

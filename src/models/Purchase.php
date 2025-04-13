@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/config.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/config.php';
 
 class Purchase extends ActiveRecord\Model{
 

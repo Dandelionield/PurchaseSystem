@@ -1,16 +1,17 @@
 <?php
 
 	session_start();
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/config.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/models/User.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/config.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/src/models/User.php';
 
 	if (!isset($_SESSION['user_dni'])){
 
-		header('Location: /PurchaseSystem/');
+		header('Location: /var/www/');
+		exit();
 
 	}
 
-	$header_url = '/PurchaseSystem/src/components/Header/';
+	$header_url = '/src/components/Header/';
 
 ?>
 
@@ -21,7 +22,7 @@
 
 function HeaderComponent(?User $user): string{
 
-	$header_url = '/PurchaseSystem/src/components/header/';
+	$header_url = '/src/components/header/';
 
 	ob_start();
 
@@ -39,7 +40,7 @@ function HeaderComponent(?User $user): string{
 
 				</button>
 
-				<a class="navbar-brand" href="/PurchaseSystem/src/Pages/Home/home.page.php">
+				<a class="navbar-brand" href="/src/Pages/Home/home.page.php">
 					Purchase System
 				</a>
 
@@ -48,7 +49,7 @@ function HeaderComponent(?User $user): string{
 					<i class="fas fa-user-circle me-2"></i>
 					<?= $user!=null ? $user->name : 'User' ?>
 
-					<a href="/PurchaseSystem/" class="btn btn-outline-light btn-sm ms-3">
+					<a href="/var/www/" class="btn btn-outline-light btn-sm ms-3">
 
 						<i class="fas fa-sign-out-alt"></i>
 
@@ -80,7 +81,7 @@ function HeaderComponent(?User $user): string{
 
 							<li class="nav-item">
 
-								<a class="nav-link active" href="/PurchaseSystem/src/pages/Forms/User/User.page.php">
+								<a class="nav-link active" href="/src/pages/Forms/User/User.page.php">
 
 									<i class="fas fa-users-cog me-2"></i>Users
 
@@ -102,7 +103,7 @@ function HeaderComponent(?User $user): string{
 
 						<li class="nav-item">
 
-							<a class="nav-link" href="/PurchaseSystem/src/pages/Forms/Purchase/purchase.page.php">
+							<a class="nav-link" href="/src/pages/Forms/Purchase/purchase.page.php">
 
 								<i class="fas fa-cart-plus me-2"></i>New Purchase
 

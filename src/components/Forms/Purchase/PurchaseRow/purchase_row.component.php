@@ -1,7 +1,7 @@
 <?php
 
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/models/Purchase.php';
-	$purchase_row_url = '/PurchaseSystem/src/components/Forms/Purchase/PurchaseRow/';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/src/models/Purchase.php';
+	$purchase_row_url = '/src/components/Forms/Purchase/PurchaseRow/';
 
 ?>
 

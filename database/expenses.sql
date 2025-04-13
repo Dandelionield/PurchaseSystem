@@ -1,90 +1,87 @@
-CREATE DATABASE expenses;
+-- MySQL dump 10.13  Distrib 5.1.72, for Win32 (ia32)
+--
+-- Host: localhost    Database: expenses
+-- ------------------------------------------------------
+-- Server version	5.1.72-community
 
-CREATE USER 'expenses'@'localhost' IDENTIFIED BY 'lambda73';
-GRANT ALL PRIVILEGES ON expenses.* TO 'expenses'@'localhost';
-FLUSH PRIVILEGES;
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-USE expenses;
+--
+-- Table structure for table `purchase`
+--
 
-CREATE TABLE IF NOT EXISTS user(
+DROP TABLE IF EXISTS `purchase`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `purchase` (
+  `purchase_id` int(11) NOT NULL AUTO_INCREMENT,
+  `total` decimal(10,2) DEFAULT '0.00',
+  `purchase_date` datetime NOT NULL DEFAULT NOW(),
+  `details` text NOT NULL,
+  `user_dni` varchar(20) NOT NULL,
+  `state` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`purchase_id`),
+  KEY `user_dni` (`user_dni`),
+  CONSTRAINT `purchase_ibfk_1` FOREIGN KEY (`user_dni`) REFERENCES `user` (`user_dni`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-    user_dni VARCHAR(10),
-    name VARCHAR(100) NOT NULL,
-    email VARCHAR(100) NOT NULL UNIQUE,
-    password VARCHAR(30) NOT NULL,
-	login BOOLEAN NOT NULL DEFAULT FALSE,
-	admin BOOLEAN NOT NULL DEFAULT FALSE,
-    state BOOLEAN NOT NULL DEFAULT TRUE,
-	PRIMARY KEY (user_dni)
+--
+-- Dumping data for table `purchase`
+--
 
-)ENGINE = INNODB;
+LOCK TABLES `purchase` WRITE;
+/*!40000 ALTER TABLE `purchase` DISABLE KEYS */;
+INSERT INTO `purchase` VALUES (1,'45456.00','2025-04-12 05:00:00','Mercadito','1111111111',1);
+/*!40000 ALTER TABLE `purchase` ENABLE KEYS */;
+UNLOCK TABLES;
 
-CREATE TABLE IF NOT EXISTS purchase(
+--
+-- Table structure for table `user`
+--
 
-    purchase_id INT AUTO_INCREMENT PRIMARY KEY,
-    total DECIMAL(10,2) DEFAULT 0 CHECK (total >= 0),
-    purchase_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-	details TEXT NOT NULL,
-    user_dni VARCHAR(20) NOT NULL,
-	state BOOLEAN NOT NULL DEFAULT TRUE,
-    FOREIGN KEY (user_dni) REFERENCES user(user_dni) ON DELETE CASCADE ON UPDATE CASCADE
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
+  `user_dni` varchar(10) NOT NULL DEFAULT '',
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `password` varchar(30) NOT NULL,
+  `login` tinyint(1) NOT NULL DEFAULT '0',
+  `admin` tinyint(1) NOT NULL DEFAULT '0',
+  `state` tinyint(1) NOT NULL DEFAULT '1',
+  PRIMARY KEY (`user_dni`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
-)ENGINE = INNODB;;
+--
+-- Dumping data for table `user`
+--
 
-USE expenses;
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES ('1111111111','Dante','dante.alighieri@unicolombo.edu.co','lambda73',1,1,1),('2222222222','Maomao','maomao@unicolombo.edu.co','maomao123',1,0,1),('3333333333','Alex','alex@unicolombo.edu.co','123',1,0,0),('4444444444','Danielle','danielle@unicolombo','321',1,0,1),('5555555555','Doe','doe@unicolombo.edu.co','aa11',1,0,0),('6666666666','Duvan','duvan@unicolombo.edu.co','a321',1,0,1);
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
-INSERT INTO user(
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
-	user_dni,
-	name,
-	email,
-	password,
-	login,
-	admin
-
-) VALUES (
-
-	'1111111111',
-	'Dante',
-	'dante.alighieri@unicolombo.edu.co',
-	'lambda73',
-	TRUE,
-	TRUE
-
-),(
-
-	'2222222222',
-	'Maomao',
-	'maomao@unicolombo.edu.co',
-	'maomao123',
-	TRUE,
-	FALSE
-
-),(
-
-	'3333333333',
-	'Alex',
-	'alex@unicolombo.edu.co',
-	'123',
-	TRUE,
-	FALSE
-
-),(
-
-	'4444444444',
-	'Danielle',
-	'danielle@unicolombo',
-	'321',
-	TRUE,
-	FALSE
-
-),(
-
-	'5555555555',
-	'Doe',
-	'doe@unicolombo.edu.co',
-	'aa11',
-	TRUE,
-	FALSE
-
-);
+-- Dump completed on 2025-04-12 17:24:26

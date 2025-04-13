@@ -1,8 +1,8 @@
 <?php
 
 	session_start();
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/config.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/models/Purchase.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/config.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/src/models/Purchase.php';
 
 class PurchaseController{
 
@@ -12,7 +12,7 @@ class PurchaseController{
 
 		try{
 
-			if (count($POST)!=3){
+			if (count($POST)!=2){
 
 				throw new Exception('Number of fields are incongruent.');
 
@@ -24,12 +24,6 @@ class PurchaseController{
 
 			}
 
-			if (!array_key_exists('date', $POST)){
-
-				throw new Exception('Date field missing.');
-
-			}
-
 			if (!array_key_exists('details', $POST)){
 
 				throw new Exception('Details field missing.');
@@ -37,18 +31,11 @@ class PurchaseController{
 			}
 
 			$total = trim($POST['total']);
-			$date = trim($POST['date']);
 			$details = trim($POST['details']);
 
 			if (empty($total)){
 
 				throw new Exception('Total cannot be empty.');
-
-			}
-
-			if (empty($date)){
-
-				throw new Exception('Date cannot be empty.');
 
 			}
 
@@ -71,12 +58,11 @@ class PurchaseController{
 			}else{
 
 				$this->purchase = Purchase::find_by_id($_SESSION['updated_purchase']);
-				$_SESSION['updated_Purchase'] = '';
+				$_SESSION['updated_purchase'] = '';
 
 			}
 
 			$this->purchase->total = $total;
-			$this->purchase->purchase_date = date($date);
 			$this->purchase->details = $details;
 			$this->purchase->user = $_SESSION['user_dni'];
 
@@ -183,7 +169,7 @@ try{
 		'status' => 'success',
 		'state' => $state,
 		'message' => 'Purchase succesfully '. $type .'d',
-		'url' => '/PurchaseSystem/src/pages/Forms/Purchase/Purchase.page.php'
+		'url' => '/src/pages/Forms/Purchase/Purchase.page.php'
 
 	]);
 

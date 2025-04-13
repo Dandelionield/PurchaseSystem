@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function showForm(id){
 
-    fetch("/PurchaseSystem/src/components/Forms/Purchase/PurchaseForm/purchase_form.component.php" + (id!=null ? "?id="+id : "")).then(
+    fetch("/src/components/Forms/Purchase/PurchaseForm/purchase_form.component.php" + (id!=null ? "?id="+id : "")).then(
 	
 		response => response.text()
 	
@@ -30,7 +30,7 @@ function showForm(id){
 		script = document.createElement('script');
 		script.id = 'controller';
 		script.type = 'text/javascript';
-		script.src = '/PurchaseSystem/src/common/request.interceptor.controller.js';
+		script.src = '/src/common/request.interceptor.controller.js';
 		script.async = true;
 
 		document.body.appendChild(script);

@@ -1,8 +1,8 @@
 <?php
 
 	session_start();
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/config.php';
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/models/User.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/config.php';
+	require_once $_SERVER['DOCUMENT_ROOT'] . '/src/models/User.php';
 
 class UserController{
 
@@ -258,7 +258,7 @@ try{
 		'status' => 'success',
 		'state' => $state,
 		'message' => 'User succesfully '. $type .'d',
-		'url' => '/PurchaseSystem/src/pages/Forms/User/User.page.php'
+		'url' => '/src/pages/Forms/User/User.page.php'
 
 	]);
 

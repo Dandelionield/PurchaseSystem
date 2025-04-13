@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/models/User.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/src/models/User.php';
 
 $id = isset($_GET['dni']) ? $_GET['dni'] : null;
 
@@ -20,8 +20,8 @@ if ($id!=null){
 
 function UserInsertForm(?User $user): string{
 
-	$user_url = '/PurchaseSystem/src/pages/Forms/User/';
-	$user_form_url = '/PurchaseSystem/src/components/Forms/User/UserForm/';
+	$user_url = '/src/pages/Forms/User/';
+	$user_form_url = '/src/components/Forms/User/UserForm/';
 
 	ob_start();
 

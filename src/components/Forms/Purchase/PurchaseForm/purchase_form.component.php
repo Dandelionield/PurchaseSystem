@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/models/Purchase.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/src/models/Purchase.php';
 
 $id = isset($_GET['id']) ? $_GET['id'] : null;
 
@@ -20,8 +20,8 @@ if ($id!=null){
 
 function PurchaseInsertForm(?Purchase $purchase): string{
 
-	$purchase_url = '/PurchaseSystem/src/pages/Forms/Purchase/';
-	$purchase_form_url = '/PurchaseSystem/src/components/Forms/Purchase/PurchaseForm/';
+	$purchase_url = '/src/pages/Forms/Purchase/';
+	$purchase_form_url = '/src/components/Forms/Purchase/PurchaseForm/';
 
 	ob_start();
 
@@ -49,13 +49,6 @@ function PurchaseInsertForm(?Purchase $purchase): string{
 
 						<label class="form-label">Total</label>
 						<input type="text" class="form-control" name="total" value="<?=$purchase!=null ? $purchase->total : ''?>">
-
-					</div>
-
-					<div class="mb-3">
-
-						<label class="form-label">Date</label>
-						<input type="date" class="form-control" name="date" value="<?=$purchase!=null ? $purchase->purchase_date->format('Y-m-d') : ''?>">
 
 					</div>
 

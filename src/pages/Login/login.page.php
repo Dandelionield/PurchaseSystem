@@ -1,10 +1,3 @@
-<?php
-
-	session_start();
-	$_SESSION['user_dni'] = null;
-
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -61,7 +54,7 @@
 
 		</div>
 
-		<!--><script src="/PurchaseSystem/src/common/request.interceptor.controller.js"></script><!-->
+		<!--><script src="/src/common/request.interceptor.controller.js"></script><!-->
 
 	</body>
 

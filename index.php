@@ -1,5 +1,5 @@
 <?php
 
-	header('Location: /PurchaseSystem/src/pages/Login/login.page.php');
+	header('Location: /src/pages/Login/login.page.php');
 
 ?>

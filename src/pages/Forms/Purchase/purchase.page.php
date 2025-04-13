@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+<?php
+
+session_start();
+
+?><!DOCTYPE html>
 <html lang="es">
 
 	<head>
@@ -9,11 +13,11 @@
 
 		<?php
 
-			require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/components/Header/header.component.php';
-			require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/components/Forms/Purchase/PurchaseRow/purchase_row.component.php';
-			require_once $_SERVER['DOCUMENT_ROOT'] . '/PurchaseSystem/src/models/Purchase.php';
+			require_once $_SERVER['DOCUMENT_ROOT'] . '/src/components/Header/header.component.php';
+			require_once $_SERVER['DOCUMENT_ROOT'] . '/src/components/Forms/Purchase/PurchaseRow/purchase_row.component.php';
+			require_once $_SERVER['DOCUMENT_ROOT'] . '/src/models/Purchase.php';
 
-			$purchase_url = '/PurchaseSystem/src/pages/Forms/Purchase/';
+			$purchase_url = '/src/pages/Forms/Purchase/';
 
 		?>
 
@@ -29,7 +33,7 @@
 
 	<body>
 
-		<?=HeaderComponent(User::find_by_dni([$_SESSION['user_dni']]))?>
+		<?=HeaderComponent(User::find_by_dni($_SESSION['user_dni']))?>
 
 		<div class="container mt-4">
 

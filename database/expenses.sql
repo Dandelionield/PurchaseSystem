@@ -16,6 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `clock`
+--
+
+DROP TABLE IF EXISTS `clock`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `clock` (
+  `clock_id` int(11) NOT NULL AUTO_INCREMENT,
+  `clock_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`clock_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `clock`
+--
+
+LOCK TABLES `clock` WRITE;
+/*!40000 ALTER TABLE `clock` DISABLE KEYS */;
+/*!40000 ALTER TABLE `clock` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `purchase`
 --
 
@@ -25,7 +48,7 @@ DROP TABLE IF EXISTS `purchase`;
 CREATE TABLE `purchase` (
   `purchase_id` int(11) NOT NULL AUTO_INCREMENT,
   `total` decimal(10,2) DEFAULT '0.00',
-  `purchase_date` datetime NOT NULL DEFAULT NOW(),
+  `purchase_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `details` text NOT NULL,
   `user_dni` varchar(20) NOT NULL,
   `state` tinyint(1) NOT NULL DEFAULT '1',
@@ -84,4 +107,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-12 17:24:26
+-- Dump completed on 2025-04-13 13:12:08

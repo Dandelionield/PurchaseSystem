@@ -13,7 +13,6 @@
 
 		<?php
 
-			require_once $_SERVER['DOCUMENT_ROOT'] . '/src/services/Session/session.service.php';
 			require_once $_SERVER['DOCUMENT_ROOT'] . '/src/components/Header/header.component.php';
 			require_once $_SERVER['DOCUMENT_ROOT'] . '/src/components/Forms/User/UserRow/user_row.component.php';
 

@@ -14,26 +14,18 @@
 		<?php
 
 			require_once $_SERVER['DOCUMENT_ROOT'] . '/src/components/Header/header.component.php';
-			require_once $_SERVER['DOCUMENT_ROOT'] . '/src/services/Session/session.service.php';
 
 			$home_url = '/src/pages/Home/';
 
 		?>
 
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 		<link href="<?= $home_url ?>home.page.css" rel="stylesheet">
 
 	</head>
 
 	<body>
 
-		<?php
-
-			$user = User::find_by_dni($_SESSION['user_dni']);
-
-		?>
-
-		<?=HeaderComponent($user)?>
+		<?=HeaderComponent(User::find_by_dni($_SESSION['user_dni']))?>
 
 		<div class="welcome-container">
 

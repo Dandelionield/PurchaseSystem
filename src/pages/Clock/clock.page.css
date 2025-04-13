@@ -1,0 +1,63 @@
+
+.clock {
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 100;
+	font-size: 4em;
+	text-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+}
+
+.table-container {
+	position: relative;
+	top: 60vh;
+	overflow-y: auto;
+	width: 10vh;
+	margin: 2rem auto;
+}
+
+.table-transparent {
+
+	color: #004a0c !important;
+
+}
+
+body {
+
+	overflow-x: hidden;
+	padding: 0 !important;
+
+}
+
+.capture-btn {
+
+	position: fixed;
+	bottom: 70vh;
+	left: 50%;
+	transform: translateX(-50%);
+	padding: 15px 40px;
+	font-size: 1.2em;
+	background: #00ff88;
+	color: #004a0c;
+	border: none;
+	border-radius: 30px;
+	cursor: pointer;
+	box-shadow: 0 4px 15px rgba(0, 255, 136, 0.3);
+	transition: all 0.3s ease;
+	z-index: 1000;
+
+}
+
+.capture-btn:hover {
+
+	background: #00cc6a;
+	transform: translateX(-50%) scale(1.05);
+
+}
+
+.capture-btn:active {
+
+	transform: translateX(-50%) scale(0.95);
+
+}

@@ -17,6 +17,7 @@
 
 <link rel="stylesheet" href="<?= $header_url?>header.component.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 
 <?php
 
@@ -106,6 +107,26 @@ function HeaderComponent(?User $user): string{
 							<a class="nav-link" href="/src/pages/Forms/Purchase/purchase.page.php">
 
 								<i class="fas fa-cart-plus me-2"></i>New Purchase
+
+							</a>
+
+						</li>
+
+					</ul>
+
+					<h6 class="sidebar-heading px-3 mt-4 mb-1 text-muted">
+
+						<i class="fas fa-solid fa-clock-rotate-left me-2"></i>Time
+
+					</h6>
+		
+					<ul class="nav flex-column">
+
+						<li class="nav-item">
+
+							<a class="nav-link" href="/src/pages/Clock/clock.page.php">
+
+								<i class="fas fa-solid fa-clock me-2"></i>Digital Clock
 
 							</a>
 

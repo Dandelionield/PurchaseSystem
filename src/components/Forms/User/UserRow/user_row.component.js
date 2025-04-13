@@ -16,7 +16,7 @@ async function warning(b){
 	
 		return true;
 
-    }else{// if (shot.isDismissed){
+    }else{
 
         Swal.fire('Cancelled', 'Action has been cancelled', 'info');
 	

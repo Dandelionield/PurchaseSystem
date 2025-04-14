@@ -16,6 +16,7 @@ A comprehensive web-based system for managing purchases and time capture. Built 
 
 - **Backend**: PHP 7.4
 - **Database**: Mysql 5.7
+- **Web Server**: nginx 1.14
 - **ORM**: [PHP ActiveRecord](http://www.phpactiverecord.org/)
 - **Frontend**: Bootstrap 5, HTML5, CSS3
 
@@ -24,13 +25,13 @@ A comprehensive web-based system for managing purchases and time capture. Built 
 ### Prerequisites
 - PHP 7.4+
 - Mysql 5.7
-- Docker Composer
+- Docker Compose
 - Web server (Apache/Nginx)
 
 ```bash
 # Clone repository
 git clone https://github.com/Dandelionield/PurchaseSystem.git
-cd purchase-system
+cd PurchaseSystem
 
-# Install dependencies
+# RUN
 docker-composer up --build
